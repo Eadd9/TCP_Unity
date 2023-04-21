@@ -15,27 +15,21 @@ public class TCPtest : MonoBehaviour
     IPAddress localAdd;
     TcpListener listener;
     TcpClient client;
-    Vector3 receivedPos = Vector3.zero;
     bool running;
     public string Mes;
     private string cleardincoming;
     private string cleardincoming2;
     private string Rx;
-    private string RXAUTO;
-    private string RXORDI;
     
-    // Start is called before the first frame update
     void Start()
     {
         ThreadStart ts = new ThreadStart(GetInfo);
         mThread = new Thread(ts);
         mThread.Start();
     }
-
-    // Update is called once per frame
+    
     void Update()
     {
-        //Debug.Log(Mes);
         if (Mes.Contains("O1G") && Mes.Contains("&"))
         {
             cleardincoming = Mes.Substring(3);                  //delete the message start delimiter

@@ -8,13 +8,6 @@ public class Main : MonoBehaviour
 {
     public GameObject TCP;
     private string Message;
-    [Header("The number")]
-    public int autocarnum = 120;
-    public int ordinarycarnum = 120;
-    
-    [Header("Car Object")]
-    public GameObject Tocusauto;
-    public GameObject Tocusordinary;
     
     [Header("Map offset")]
     public float posoffset_x = 1651.51f;
@@ -23,71 +16,45 @@ public class Main : MonoBehaviour
     [Header("Vehicle ID Lists")]
     List<string> IDlist = new List<string>();
     List<string> oldIDlist = new List<string>();
-    GameObject[] autocar = new GameObject[120];
-    GameObject[] ordinarycar = new GameObject[120];
-    
+
     private Dictionary<string, CarInfo> CarDict = new Dictionary<string, CarInfo>();
 
-    
     private float timer = 0.0f;
     private int carnum = 119;
     
+    [Header("EachCar number")]
+    public int autocarnum = 120;
+    public int ordinarycarnum = 120;
     
+    public GameObject[] autocar = new GameObject[120];
+    public GameObject[] ordinarycar = new GameObject[120];
     
     // Start is called before the first frame update
     void Start()
     {
-        //克隆所需要的自动驾驶车辆数量
-        for (var i = 0; i < autocarnum; i++)
+        List<string> AutoList = new List<string>();
+        List<string> OrdinaryList = new List<string>();
+        for (int i = 0; i < autocarnum; i++)
         {
-            GameObject a;
-            a = Instantiate(Tocusauto);
-            a.name = $"autocar{i}";
+            AutoList.Add($"autocar{i}");
+            autocar[i] = GameObject.Find(AutoList[i]);
         }
-        
-        //克隆所需要的普通驾驶车辆数量
-        for (var i = 0; i < ordinarycarnum; i++)
-        {
-            GameObject b;
-            b = Instantiate(Tocusordinary);
-            b.name = $"ordinarycar{i}";
-        }
-        //用于弹性增加自动驾驶车辆
-        string[] MoveAbleVehList01 = new string[] { };
-        List<string> Arrayauto = new List<string>(MoveAbleVehList01);
-        for(int i = 0; i < autocarnum; i++)
-        {
-            Arrayauto.Add($"autocar{i}");
-        }
-        string[] MoveAbleVehListauto = Arrayauto.ToArray();
 
-        for (int i = 0; i < MoveAbleVehListauto.Length; i++)
+        for (int i = 0; i < ordinarycarnum; i++)
         {
-            autocar[i] = GameObject.Find(MoveAbleVehListauto[i]);
+            OrdinaryList.Add($"ordinarycar{i}");
+            ordinarycar[i] = GameObject.Find(OrdinaryList[i]);
         }
-        //用于弹性增加普通车辆
-        string[] MoveAbleVehList02 = new string[] { };
-        List<string> Arrayordinary = new List<string>(MoveAbleVehList02);
-        for(int i = 0; i < ordinarycarnum; i++)
-        {
-            Arrayordinary.Add($"ordinarycar{i}");
-        }
-        string[] MoveAbleVehListordinary = Arrayordinary.ToArray();
 
-        for (int i = 0; i < MoveAbleVehListordinary.Length; i++)
-        {
-            ordinarycar[i] = GameObject.Find(MoveAbleVehListordinary[i]);
-        }
     }
     
     void Update()
     {
         Message = TCP.GetComponent<TCPtest>().RxMsg();
-        SplitDataNew(Message);
+        SplitData(Message);
     }
-
-
-    public void SplitDataNew(string message)
+    
+    public void SplitData(string message)
     {
         if (message != null)
         {
@@ -114,8 +81,6 @@ public class Main : MonoBehaviour
     public void Transform(Dictionary<string, CarInfo> CarDict, List<string> IDs )
     {
         int j = 0;
-        
-
         for (int i = 0; i < CarDict.Count; i++)  //running through all vehicle
         {
             CarInfo tmp_CarInfo = CarDict[IDs[i]];  //creating tmp CarInfo to handle the current object
@@ -133,6 +98,7 @@ public class Main : MonoBehaviour
 
             if (tmp_CarInfo.Type == "autovehicle")
             {
+                
                 AutoMove(j,tmp_CarInfo);
             }
             else if(tmp_CarInfo.Type == "ordinaryvehicle")
@@ -173,7 +139,5 @@ public class Main : MonoBehaviour
             autocar[j].GetComponent<scr_VehicleHandler>().CalculateSteering(tmpCarInfo.heading, tmpCarInfo.speed, timer);   
         }
     }
-
-    
 }
 
