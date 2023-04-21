@@ -102,27 +102,27 @@ public class Main : MonoBehaviour
     public void AutoMove(int j,CarInfo tmpCarInfo)
     {
         Vector3 tempPos = autocar[j].transform.position; 
-            tempPos.x = (tmpCarInfo.posx - posoffset_x);
-            tempPos.y = 0.1f;
-            tempPos.z = (tmpCarInfo.posy - posoffset_y);
-            Quaternion rot;
-            Vector3 ydir = new Vector3(0, 1, 0);
-            rot = Quaternion.AngleAxis((tmpCarInfo.heading), ydir);
-            autocar[j].transform.SetPositionAndRotation(tempPos, rot);
-            //autocar[j].GetComponent<scr_VehicleHandler>().CalculateSteering(tmpCarInfo.heading, tmpCarInfo.speed, timer);
+        tempPos.x = (tmpCarInfo.posx - posoffset_x);
+        tempPos.y = 0.1f;
+        tempPos.z = (tmpCarInfo.posy - posoffset_y);
+        Quaternion rot;
+        Vector3 ydir = new Vector3(0, 1, 0);
+        rot = Quaternion.AngleAxis((tmpCarInfo.heading), ydir);
+        autocar[j].transform.SetPositionAndRotation(tempPos, rot);
+        //autocar[j].GetComponent<scr_VehicleHandler>().CalculateSteering(tmpCarInfo.heading, tmpCarInfo.speed, timer);
     }
     
     public void OrdiMove(int j,CarInfo tmpCarInfo)
     {
         Vector3 tempPos = ordinarycar[j].transform.position; 
-            tempPos.x = (tmpCarInfo.posx - posoffset_x);
-            tempPos.y = 0.1f;
-            tempPos.z = (tmpCarInfo.posy - posoffset_y);
-            Quaternion rot;
-            Vector3 ydir = new Vector3(0, 1, 0);
-            rot = Quaternion.AngleAxis((tmpCarInfo.heading), ydir);
-            autocar[j].transform.SetPositionAndRotation(tempPos, rot);
-            //autocar[j].GetComponent<scr_VehicleHandler>().CalculateSteering(tmpCarInfo.heading, tmpCarInfo.speed, timer);
+        tempPos.x = (tmpCarInfo.posx - posoffset_x);
+        tempPos.y = 0.1f;
+        tempPos.z = (tmpCarInfo.posy - posoffset_y);
+        Quaternion rot;
+        Vector3 ydir = new Vector3(0, 1, 0);
+        rot = Quaternion.AngleAxis((tmpCarInfo.heading), ydir);
+        ordinarycar[j].transform.SetPositionAndRotation(tempPos, rot);
+        //autocar[j].GetComponent<scr_VehicleHandler>().CalculateSteering(tmpCarInfo.heading, tmpCarInfo.speed, timer);
     }
 }
 
