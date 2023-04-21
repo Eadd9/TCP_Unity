@@ -9,8 +9,8 @@ public class Main : MonoBehaviour
     public GameObject TCP;
     private string Message;
     [Header("The number")]
-    public int autocarnum = 80;
-    public int ordinarycarnum = 40;
+    public int autocarnum = 120;
+    public int ordinarycarnum = 120;
     
     [Header("Car Object")]
     public GameObject Tocusauto;
@@ -21,19 +21,18 @@ public class Main : MonoBehaviour
     public float posoffset_y = 1653.26f;
     
     [Header("Vehicle ID Lists")]
-    private string[] IDlistauto = new string[100];
-    private string[] IDlistordinary = new string[100];
-    private string[] oldIDlistauto = new string[100];
-    private string[] oldIDlistordinary = new string[100];
-    GameObject[] autocar = new GameObject[100];
-    GameObject[] ordinarycar = new GameObject[100];
+    List<string> IDlist = new List<string>();
+    List<string> oldIDlist = new List<string>();
+    GameObject[] autocar = new GameObject[120];
+    GameObject[] ordinarycar = new GameObject[120];
     
-    private Dictionary<string, CarInfo> CarDictauto = new Dictionary<string, CarInfo>();
-    private Dictionary<string, CarInfo> CarDictordinary = new Dictionary<string, CarInfo>();
+    private Dictionary<string, CarInfo> CarDict = new Dictionary<string, CarInfo>();
+
     
     private float timer = 0.0f;
+    private int carnum = 119;
     
-
+    
     
     // Start is called before the first frame update
     void Start()
@@ -46,7 +45,7 @@ public class Main : MonoBehaviour
             a.name = $"autocar{i}";
         }
         
-        //克隆所需要的自动驾驶车辆数量
+        //克隆所需要的普通驾驶车辆数量
         for (var i = 0; i < ordinarycarnum; i++)
         {
             GameObject b;
@@ -84,107 +83,44 @@ public class Main : MonoBehaviour
     void Update()
     {
         Message = TCP.GetComponent<TCPtest>().RxMsg();
-        //Debug.Log(Message);
-        SplitData(Message,timer);
+        SplitDataNew(Message);
     }
 
-    public void SplitData(string message, float timer)           //split incoming string per vehicle
+
+    public void SplitDataNew(string message)
     {
-        if (message != null)      // @ is the separator between vehicles
+        if (message != null)
         {
-            int autoi = 0;
-            int ordinaryi = 0;
-            Array.Clear(IDlistauto, 0, IDlistauto.Length);
-            Array.Clear(IDlistordinary, 0, IDlistordinary.Length);
-            string[] DataPerVehicle = message.Split('@');       
-            for (int i = 0; i < DataPerVehicle.Length; i++)
+            IDlist.Clear();
+            string[] DataPerVehicle = message.Split('@');
+            foreach (var vehicle in DataPerVehicle)
             {
-                CarInfo car = new CarInfo(DataPerVehicle[i]);       //creating a CarInfo class with name car
-                if (car.VehicleType == 1)
+                CarInfo car = new CarInfo(vehicle); 
+                IDlist.Add(car.vehid);
+                if (oldIDlist.Contains(car.vehid) == false) 
                 {
-                    IDlistauto[autoi] = car.vehid;  //adding the id to the ID list to check
-                    autoi++;
-                    if (CarDictauto.ContainsKey(car.vehid) == false) //check the ID, if the new ID is element of the old list, it returns with the index, if not element, it returns with -1
-                    {
-                        CarDictauto.Add(car.vehid, car);      //fill up dictionary
-                    }
-                    else
-                    {
-                        CarDictauto[car.vehid] = car;       //update dictionary
-                    }
+                    CarDict.Add(car.vehid, car);  
                 }
                 else
                 {
-                    IDlistordinary[ordinaryi] = car.vehid;  //adding the id to the ID list to check
-                    ordinaryi++;
-                    if (Array.IndexOf(oldIDlistordinary, car.vehid) == -1 && car.vehid != null) //check the ID, if the new ID is element of the old list, it returns with the index, if not element, it returns with -1
-                    {
-                        CarDictordinary.Add(car.vehid, car);      //fill up dictionary
-                    }
-                    else if (car.vehid != null)
-                    {
-                        CarDictordinary[car.vehid] = car;       //update dictionary
-                    }
+                    CarDict[car.vehid] = car;  
                 }
             }
-            Transformauto(CarDictauto, IDlistauto);    //call the transfrom function
-            oldIDlistauto = IDlistauto; //update the list
-            Transformordinary(CarDictordinary, IDlistordinary);    //call the transfrom function
-            oldIDlistordinary = IDlistordinary; //update the list
-        }
-    }
-
-    public void Transformauto(Dictionary<string, CarInfo> CarDict,  string[] IDs)
-    {
-        int num = CarDict.Count; 
-        int j = 0;  //default
-        int k = autocarnum;
-        
-        
-        //string carfront = "car";
-        for (int i = 0; i < num; i++)  //running through all vehicle
-        {
-            CarInfo tmp_CarInfo = CarDict[IDs[i]];  //creating tmp CarInfo to handle the current object
-
-
-            for(int vehnum = 0; vehnum < k; vehnum++)
-            {
-                
-                if (tmp_CarInfo.vehid == "car" + Convert.ToString(vehnum))
-                {
-                    j = vehnum;
-                    break;
-                }
-             
-            }
-            Vector3 tempPos = autocar[j].transform.position;               // get the current position
-            tempPos.x = (float)(tmp_CarInfo.posx - posoffset_x);       //adding the offset
-            tempPos.y = 0.1f;
-            tempPos.z = (float)(tmp_CarInfo.posy - posoffset_y);
-            Quaternion tempRot = autocar[j].transform.rotation;            // get the current position
-            Quaternion rot;
-            Vector3 ydir = new Vector3(0, 1, 0);    //y direction to rotation
-            rot = Quaternion.AngleAxis((tmp_CarInfo.heading), ydir);
-            autocar[j].transform.SetPositionAndRotation(tempPos, rot);  //set the position and the rotation
-            autocar[j].GetComponent<scr_VehicleHandler>().CalculateSteering(tmp_CarInfo.heading, tmp_CarInfo.speed, timer);
-            //car[j].GetComponent<scr_VehicleHandler>().BrakeLightSwitch(tmp_CarInfo.brakestate);
+            Transform(CarDict, IDlist);    //call the transfrom function
+            oldIDlist = IDlist; //update the list
         }
     }
     
-    public void Transformordinary(Dictionary<string, CarInfo> CarDict,  string[] IDs)
+    public void Transform(Dictionary<string, CarInfo> CarDict, List<string> IDs )
     {
-        int num = CarDict.Count; 
-        int j = 0;  //default
-        int k = ordinarycarnum;
+        int j = 0;
         
-        
-        //string carfront = "car";
-        for (int i = 0; i < num; i++)  //running through all vehicle
+
+        for (int i = 0; i < CarDict.Count; i++)  //running through all vehicle
         {
             CarInfo tmp_CarInfo = CarDict[IDs[i]];  //creating tmp CarInfo to handle the current object
-
-
-            for(int vehnum = 0; vehnum < k; vehnum++)
+            
+            for(int vehnum = 0; vehnum < carnum; vehnum++)
             {
                 
                 if (tmp_CarInfo.vehid == "car" + Convert.ToString(vehnum))
@@ -194,61 +130,50 @@ public class Main : MonoBehaviour
                 }
              
             }
-            Vector3 tempPos = ordinarycar[j].transform.position;               // get the current position
-            tempPos.x = (float)(tmp_CarInfo.posx - posoffset_x);       //adding the offset
-            tempPos.y = 0.1f;
-            tempPos.z = (float)(tmp_CarInfo.posy - posoffset_y);
-            Quaternion tempRot = ordinarycar[j].transform.rotation;            // get the current position
-            Quaternion rot;
-            Vector3 ydir = new Vector3(0, 1, 0);    //y direction to rotation
-            rot = Quaternion.AngleAxis((tmp_CarInfo.heading), ydir);
-            ordinarycar[j].transform.SetPositionAndRotation(tempPos, rot);  //set the position and the rotation
-            ordinarycar[j].GetComponent<scr_VehicleHandler>().CalculateSteering(tmp_CarInfo.heading, tmp_CarInfo.speed, timer);
-            //car[j].GetComponent<scr_VehicleHandler>().BrakeLightSwitch(tmp_CarInfo.brakestate);
+
+            if (tmp_CarInfo.Type == "autovehicle")
+            {
+                AutoMove(j,tmp_CarInfo);
+            }
+            else if(tmp_CarInfo.Type == "ordinaryvehicle")
+            {
+                OrdiMove(j,tmp_CarInfo);
+            }
         }
     }
 
-}
-public class CarInfo
-{
-    public string vehid;
-    public float posx;
-    public float posy;
-    public float speed;
-    public float heading;
-    public int VehicleType;
-    //public int sizeclass;
- 
-    public string Type;
- 
-    public CarInfo(string txt)
+    public void AutoMove(int j,CarInfo tmpCarInfo)
     {
-        if (txt.Contains(";"))
+        if (autocar[j] != null)
         {
-            string[] a = txt.Split(';'); //split the data of a vehicle, the data order: vehid, posx, posy, speed, heading, brakelight state, sizeclass
-            if (a.Length >= 5)
-            {
-                vehid = a[0];
-                posx = (float)Convert.ToDouble(a[1], new CultureInfo("en-US"));
-                posy = (float)Convert.ToDouble(a[2], new CultureInfo("en-US"));
-                speed = (float)Convert.ToDouble(a[3], new CultureInfo("en-US"));
-                heading = (float)Convert.ToDouble(a[4], new CultureInfo("en-US"));
-                VehicleType = (int)Convert.ToDouble(a[5], new CultureInfo("en-US"));
-
-
-                if (VehicleType == 1)
-                    Type = "autovehicle";
-                else
-                    Type = "ordinaryvehicle";
-
-            }
-            else
-            {
-                Debug.Log("incorrect messeage length");
-            }
+            Vector3 tempPos = autocar[j].transform.position; 
+            tempPos.x = (tmpCarInfo.posx - posoffset_x);
+            tempPos.y = 0.1f;
+            tempPos.z = (tmpCarInfo.posy - posoffset_y);
+            Quaternion rot;
+            Vector3 ydir = new Vector3(0, 1, 0);
+            rot = Quaternion.AngleAxis((tmpCarInfo.heading), ydir);
+            autocar[j].transform.SetPositionAndRotation(tempPos, rot);
+            autocar[j].GetComponent<scr_VehicleHandler>().CalculateSteering(tmpCarInfo.heading, tmpCarInfo.speed, timer);   
         }
     }
- 
- 
- 
+    
+    public void OrdiMove(int j,CarInfo tmpCarInfo)
+    {
+        if (ordinarycar[j] != null)
+        {
+            Vector3 tempPos = ordinarycar[j].transform.position; 
+            tempPos.x = (tmpCarInfo.posx - posoffset_x);
+            tempPos.y = 0.1f;
+            tempPos.z = (tmpCarInfo.posy - posoffset_y);
+            Quaternion rot;
+            Vector3 ydir = new Vector3(0, 1, 0);
+            rot = Quaternion.AngleAxis((tmpCarInfo.heading), ydir);
+            autocar[j].transform.SetPositionAndRotation(tempPos, rot);
+            autocar[j].GetComponent<scr_VehicleHandler>().CalculateSteering(tmpCarInfo.heading, tmpCarInfo.speed, timer);   
+        }
+    }
+
+    
 }
+

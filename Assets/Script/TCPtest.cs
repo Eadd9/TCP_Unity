@@ -21,6 +21,8 @@ public class TCPtest : MonoBehaviour
     private string cleardincoming;
     private string cleardincoming2;
     private string Rx;
+    private string RXAUTO;
+    private string RXORDI;
     
     // Start is called before the first frame update
     void Start()
@@ -40,6 +42,7 @@ public class TCPtest : MonoBehaviour
             cleardincoming2 = cleardincoming.Substring(0, cleardincoming.IndexOf("&")-1); //deleting the delimiter and the last @ separator after the last vehicles paramaters
             Rx = cleardincoming2;
         }
+
     }
     public string RxMsg() //public message, get from Main script
     {
