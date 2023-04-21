@@ -32,18 +32,14 @@ public class Main : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        List<string> AutoList = new List<string>();
-        List<string> OrdinaryList = new List<string>();
         for (int i = 0; i < autocarnum; i++)
         {
-            AutoList.Add($"autocar{i}");
-            autocar[i] = GameObject.Find(AutoList[i]);
+            autocar[i] = GameObject.Find($"autocar{i}");
         }
 
         for (int i = 0; i < ordinarycarnum; i++)
         {
-            OrdinaryList.Add($"ordinarycar{i}");
-            ordinarycar[i] = GameObject.Find(OrdinaryList[i]);
+            ordinarycar[i] = GameObject.Find($"ordinarycar{i}");
         }
 
     }
@@ -84,21 +80,16 @@ public class Main : MonoBehaviour
         for (int i = 0; i < CarDict.Count; i++)  //running through all vehicle
         {
             CarInfo tmp_CarInfo = CarDict[IDs[i]];  //creating tmp CarInfo to handle the current object
-            
             for(int vehnum = 0; vehnum < carnum; vehnum++)
             {
-                
                 if (tmp_CarInfo.vehid == "car" + Convert.ToString(vehnum))
                 {
                     j = vehnum;
                     break;
                 }
-             
             }
-
             if (tmp_CarInfo.Type == "autovehicle")
             {
-                
                 AutoMove(j,tmp_CarInfo);
             }
             else if(tmp_CarInfo.Type == "ordinaryvehicle")
@@ -110,9 +101,7 @@ public class Main : MonoBehaviour
 
     public void AutoMove(int j,CarInfo tmpCarInfo)
     {
-        if (autocar[j] != null)
-        {
-            Vector3 tempPos = autocar[j].transform.position; 
+        Vector3 tempPos = autocar[j].transform.position; 
             tempPos.x = (tmpCarInfo.posx - posoffset_x);
             tempPos.y = 0.1f;
             tempPos.z = (tmpCarInfo.posy - posoffset_y);
@@ -120,15 +109,12 @@ public class Main : MonoBehaviour
             Vector3 ydir = new Vector3(0, 1, 0);
             rot = Quaternion.AngleAxis((tmpCarInfo.heading), ydir);
             autocar[j].transform.SetPositionAndRotation(tempPos, rot);
-            autocar[j].GetComponent<scr_VehicleHandler>().CalculateSteering(tmpCarInfo.heading, tmpCarInfo.speed, timer);   
-        }
+            //autocar[j].GetComponent<scr_VehicleHandler>().CalculateSteering(tmpCarInfo.heading, tmpCarInfo.speed, timer);
     }
     
     public void OrdiMove(int j,CarInfo tmpCarInfo)
     {
-        if (ordinarycar[j] != null)
-        {
-            Vector3 tempPos = ordinarycar[j].transform.position; 
+        Vector3 tempPos = ordinarycar[j].transform.position; 
             tempPos.x = (tmpCarInfo.posx - posoffset_x);
             tempPos.y = 0.1f;
             tempPos.z = (tmpCarInfo.posy - posoffset_y);
@@ -136,8 +122,7 @@ public class Main : MonoBehaviour
             Vector3 ydir = new Vector3(0, 1, 0);
             rot = Quaternion.AngleAxis((tmpCarInfo.heading), ydir);
             autocar[j].transform.SetPositionAndRotation(tempPos, rot);
-            autocar[j].GetComponent<scr_VehicleHandler>().CalculateSteering(tmpCarInfo.heading, tmpCarInfo.speed, timer);   
-        }
+            //autocar[j].GetComponent<scr_VehicleHandler>().CalculateSteering(tmpCarInfo.heading, tmpCarInfo.speed, timer);
     }
 }
 

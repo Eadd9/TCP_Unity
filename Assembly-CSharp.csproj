@@ -43,10 +43,10 @@
   <ItemGroup>
      <Compile Include="Assets\Script\TcpClientController.cs" />
      <Compile Include="Assets\Script\TCPtest.cs" />
+     <Compile Include="Assets\Script\CarCreate.cs" />
+     <Compile Include="Assets\Script\CarInfo.cs" />
      <Compile Include="Assets\Script\scr_VehicleHandler.cs" />
      <Compile Include="Assets\Script\Main.cs" />
-     <Compile Include="Assets\Script\CarInfo.cs" />
-     <Compile Include="Assets\Script\CarCreate.cs" />
      <Reference Include="UnityEngine">
      <HintPath>F:\Unity\2021.3.11f1c1\Editor\Data\Managed\UnityEngine\UnityEngine.dll</HintPath>
      </Reference>
