@@ -12,7 +12,7 @@ public class CarInfo
     public float speed;
     public float heading;
     public int VehicleType;
-    //public int sizeclass;
+
  
     public string Type;
  
