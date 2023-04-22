@@ -10,8 +10,8 @@ public class Main : MonoBehaviour
     private string Message;
     
     [Header("Map offset")]
-    public float posoffset_x = 1651.51f;
-    public float posoffset_y = 1653.26f;
+    public float posoffset_x = 0f;
+    public float posoffset_y = 0f;
     
     [Header("Vehicle ID Lists")]
     List<string> IDlist = new List<string>();

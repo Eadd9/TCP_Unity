@@ -356,6 +356,7 @@
 "Assets/Script/CarCreate.cs"
 "Assets/Script/CarInfo.cs"
 "Assets/Script/Main.cs"
+"Assets/Script/MapGen.cs"
 "Assets/Script/scr_VehicleHandler.cs"
 "Assets/Script/TcpClientController.cs"
 "Assets/Script/TCPtest.cs"
