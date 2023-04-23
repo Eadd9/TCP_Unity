@@ -20,6 +20,7 @@ public class TCPtest : MonoBehaviour
     private string cleardincoming;
     private string cleardincoming2;
     private string Rx;
+    public string MES_Python;
     
     void Start()
     {
@@ -37,6 +38,7 @@ public class TCPtest : MonoBehaviour
             Rx = cleardincoming2;
         }
 
+        MES_Python = gameObject.GetComponent<SendToPython>().MES_Python();
     }
     public string RxMsg() //public message, get from Main script
     {
@@ -70,17 +72,12 @@ public class TCPtest : MonoBehaviour
         Mes = dataReceived;
         //Debug.Log(dataReceived);
         //---Sending Data to Host----
-        byte[] myWriteBuffer = Encoding.ASCII.GetBytes(Choice()); //Converting string to byte data
+        byte[] myWriteBuffer = Encoding.ASCII.GetBytes(SendBack()); //Converting string to byte data
         nwStream.Write(myWriteBuffer, 0, myWriteBuffer.Length); //Sending the data in Bytes to Python
     }
 
-    private string Choice()
+    private string SendBack()
     {
-        string[] charArray = { "one", "two", "three", "four", "five" };
-        System.Random random = new System.Random();
-        // 随机选择字符数组中的一个元素
-        int index = random.Next(0, charArray.Length); // 随机生成一个在 [0, charArray.Length) 区间内的整数
-        string selectedChar = charArray[index];
-        return selectedChar;
+        return MES_Python;
     }
 }
