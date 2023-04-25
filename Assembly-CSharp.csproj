@@ -41,15 +41,16 @@
     <ImplicitlyExpandDesignTimeFacades>false</ImplicitlyExpandDesignTimeFacades>
   </PropertyGroup>
   <ItemGroup>
-     <Compile Include="Assets\Script\TcpClientController.cs" />
      <Compile Include="Assets\Script\TCPtest.cs" />
      <Compile Include="Assets\Script\CarCreate.cs" />
+     <Compile Include="Assets\Script_CarNum\SubRoadGetSection.cs" />
+     <Compile Include="Assets\Script_CarNum\CenterBox.cs" />
      <Compile Include="Assets\Script\CarInfo.cs" />
      <Compile Include="Assets\Script\scr_VehicleHandler.cs" />
-     <Compile Include="Assets\Script\Main.cs" />
-     <Compile Include="Assets\Script\MapGen.cs" />
-     <Compile Include="Assets\Script_CarNum\SendToPython.cs" />
      <Compile Include="Assets\Script_CarNum\RoadGetNum.cs" />
+     <Compile Include="Assets\Script\Main.cs" />
+     <Compile Include="Assets\Script_CarNum\SendToPython.cs" />
+     <Compile Include="Assets\Script\MapGen.cs" />
      <Compile Include="Assets\Script_CarNum\SubRoadGetNum.cs" />
      <None Include="Assets\Resources\testJun.txt" />
      <None Include="Assets\Resources\test.txt" />

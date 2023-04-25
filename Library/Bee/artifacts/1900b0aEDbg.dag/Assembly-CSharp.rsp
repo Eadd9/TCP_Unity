@@ -358,11 +358,12 @@
 "Assets/Script/Main.cs"
 "Assets/Script/MapGen.cs"
 "Assets/Script/scr_VehicleHandler.cs"
-"Assets/Script/TcpClientController.cs"
 "Assets/Script/TCPtest.cs"
+"Assets/Script_CarNum/CenterBox.cs"
 "Assets/Script_CarNum/RoadGetNum.cs"
 "Assets/Script_CarNum/SendToPython.cs"
 "Assets/Script_CarNum/SubRoadGetNum.cs"
+"Assets/Script_CarNum/SubRoadGetSection.cs"
 -langversion:9.0
 
 /deterministic
