@@ -49,9 +49,10 @@
      <Compile Include="Assets\Script\scr_VehicleHandler.cs" />
      <Compile Include="Assets\Script_CarNum\RoadGetNum.cs" />
      <Compile Include="Assets\Script\Main.cs" />
+     <Compile Include="Assets\Script_CarNum\SubRoadGetNum.cs" />
      <Compile Include="Assets\Script_CarNum\SendToPython.cs" />
      <Compile Include="Assets\Script\MapGen.cs" />
-     <Compile Include="Assets\Script_CarNum\SubRoadGetNum.cs" />
+     <Compile Include="Assets\Script_CarNum\CarDect.cs" />
      <None Include="Assets\Resources\testJun.txt" />
      <None Include="Assets\Resources\test.txt" />
      <Reference Include="UnityEngine">

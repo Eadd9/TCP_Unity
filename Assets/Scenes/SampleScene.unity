@@ -5545,9 +5545,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   RoadID: 
   CarNumonroad: 0
-  SubRoadGetNum1: {fileID: 0}
-  SubRoadGetNum2: {fileID: 0}
-  SubRoadGetNum3: {fileID: 0}
+  AllAutoCarList: []
 --- !u!1 &344566795
 GameObject:
   m_ObjectHideFlags: 0
@@ -7639,7 +7637,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 537432849}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 1336.6, y: 0.63, z: 1476.75}
+  m_LocalPosition: {x: 1571, y: -0.19, z: 1476.75}
   m_LocalScale: {x: 1.147, y: 3.06, z: 3.0891}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -15437,6 +15435,7 @@ GameObject:
   - component: {fileID: 1274701409}
   - component: {fileID: 1274701408}
   - component: {fileID: 1274701412}
+  - component: {fileID: 1274701413}
   m_Layer: 6
   m_Name: AutoCar
   m_TagString: autocar
@@ -15452,7 +15451,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1274701405}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 1347.6799, y: 0, z: 1477}
+  m_LocalPosition: {x: 1534.3, y: 0, z: 1477}
   m_LocalScale: {x: 1.147, y: 3.06, z: 3.0891662}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -15522,6 +15521,20 @@ BoxCollider:
   serializedVersion: 2
   m_Size: {x: 0.99999994, y: 0.99999994, z: 1}
   m_Center: {x: 0, y: 0, z: 0}
+--- !u!114 &1274701413
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1274701405}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 9e4cbb2db5a426041afe4e8e6581ca14, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  tmpnumleft: 0
+  tmpnumright: 0
 --- !u!1 &1274706151
 GameObject:
   m_ObjectHideFlags: 0
@@ -22732,9 +22745,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   RoadID: 
   CarNumonroad: 0
-  SubRoadGetNum1: {fileID: 0}
-  SubRoadGetNum2: {fileID: 0}
-  SubRoadGetNum3: {fileID: 0}
+  AllAutoCarList: []
 --- !u!1 &1840351815
 GameObject:
   m_ObjectHideFlags: 0
@@ -35402,7 +35413,6 @@ GameObject:
   - component: {fileID: 8273386777437467481}
   - component: {fileID: 4366904534296247266}
   - component: {fileID: 8273386777437467482}
-  - component: {fileID: 8273386777437467483}
   m_Layer: 0
   m_Name: -E35_2
   m_TagString: Untagged
@@ -50472,7 +50482,6 @@ GameObject:
   - component: {fileID: 5708841113578195533}
   - component: {fileID: 2282676432947723861}
   - component: {fileID: 5708841113578195534}
-  - component: {fileID: 5708841113578195535}
   m_Layer: 3
   m_Name: E35_2
   m_TagString: road
@@ -53876,7 +53885,6 @@ GameObject:
   - component: {fileID: 1149930024149320275}
   - component: {fileID: 5146107404854669807}
   - component: {fileID: 8238254413250017835}
-  - component: {fileID: 8238254413250017836}
   m_Layer: 0
   m_Name: -E35_1
   m_TagString: Untagged
@@ -81590,7 +81598,6 @@ GameObject:
   - component: {fileID: 5152739605494812918}
   - component: {fileID: 1949797709225346827}
   - component: {fileID: 5739999504224740800}
-  - component: {fileID: 5739999504224740801}
   m_Layer: 0
   m_Name: E35_1
   m_TagString: Untagged
@@ -98424,18 +98431,6 @@ MonoBehaviour:
   SubRoadCarNum: 0
   Destination: {fileID: 1041244672}
   AutoCarList: []
---- !u!114 &5708841113578195535
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1775303228298043220}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 15a5a383e07672e4b9d33c1b99818144, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!1 &5715010872232270717
 GameObject:
   m_ObjectHideFlags: 0
@@ -98664,18 +98659,6 @@ MonoBehaviour:
   SubRoadCarNum: 0
   Destination: {fileID: 1041244672}
   AutoCarList: []
---- !u!114 &5739999504224740801
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 4360700075232763186}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 15a5a383e07672e4b9d33c1b99818144, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!23 &5742985977569214244
 MeshRenderer:
   m_ObjectHideFlags: 0
@@ -126719,7 +126702,6 @@ GameObject:
   - component: {fileID: 8815817653757399263}
   - component: {fileID: 3246343341137320325}
   - component: {fileID: 8815817653757399264}
-  - component: {fileID: 8815817653757399265}
   m_Layer: 0
   m_Name: -E35_0
   m_TagString: Untagged
@@ -128844,18 +128826,6 @@ MonoBehaviour:
   SubRoadCarNum: 0
   Destination: {fileID: 1704513515}
   AutoCarList: []
---- !u!114 &8238254413250017836
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 2028489993710771793}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 15a5a383e07672e4b9d33c1b99818144, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!1 &8238736566923951628
 GameObject:
   m_ObjectHideFlags: 0
@@ -129247,7 +129217,6 @@ GameObject:
   - component: {fileID: 8924037295525847167}
   - component: {fileID: 4985445609131286554}
   - component: {fileID: 8924037295525847168}
-  - component: {fileID: 8924037295525847169}
   m_Layer: 0
   m_Name: E35_0
   m_TagString: Untagged
@@ -129343,18 +129312,6 @@ MonoBehaviour:
   SubRoadCarNum: 0
   Destination: {fileID: 1704513515}
   AutoCarList: []
---- !u!114 &8273386777437467483
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 596176338175995768}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 15a5a383e07672e4b9d33c1b99818144, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!4 &8273541784526111479
 Transform:
   m_ObjectHideFlags: 0
@@ -136428,18 +136385,6 @@ MonoBehaviour:
   SubRoadCarNum: 0
   Destination: {fileID: 1704513515}
   AutoCarList: []
---- !u!114 &8815817653757399265
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 8033886485787893480}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 15a5a383e07672e4b9d33c1b99818144, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!1 &8816577714623301797
 GameObject:
   m_ObjectHideFlags: 0
@@ -137793,18 +137738,6 @@ MonoBehaviour:
   SubRoadCarNum: 0
   Destination: {fileID: 1041244672}
   AutoCarList: []
---- !u!114 &8924037295525847169
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 8268903014700351047}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 15a5a383e07672e4b9d33c1b99818144, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!4 &8925960774475593709
 Transform:
   m_ObjectHideFlags: 0

@@ -61,9 +61,11 @@ public class SubRoadGetSection : MonoBehaviour
         {
             if (i != AutoCarList.Count - 1 && AutoCarList.Count != 0)
             {
-                SubRoadCarDict.Add($"{AutoCarList[i].name}_{AutoCarList[i + 1].name}",0);
+                SubRoadCarDict.Add($"{AutoCarList[i + 1].name}_{AutoCarList[i].name}",0);
             }
         }
+        
+
     }
 
 }

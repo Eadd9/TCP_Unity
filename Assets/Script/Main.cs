@@ -77,9 +77,9 @@ public class Main : MonoBehaviour
     public void Transform(Dictionary<string, CarInfo> CarDict, List<string> IDs )
     {
         int j = 0;
-        for (int i = 0; i < CarDict.Count; i++)  //running through all vehicle
+        foreach (var eachVehicle in CarDict)
         {
-            CarInfo tmp_CarInfo = CarDict[IDs[i]];  //creating tmp CarInfo to handle the current object
+            CarInfo tmp_CarInfo = eachVehicle.Value;
             for(int vehnum = 0; vehnum < carnum; vehnum++)
             {
                 if (tmp_CarInfo.vehid == "car" + Convert.ToString(vehnum))
@@ -97,6 +97,8 @@ public class Main : MonoBehaviour
                 OrdiMove(j,tmp_CarInfo);
             }
         }
+        
+        
     }
 
     public void AutoMove(int j,CarInfo tmpCarInfo)
