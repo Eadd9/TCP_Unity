@@ -57,6 +57,7 @@ public class SubRoadGetSection : MonoBehaviour
         }
         
         //输出车辆之间的间隔字典
+        /*原
         for (int i = 0; i < AutoCarList.Count; i++)
         {
             if (i != AutoCarList.Count - 1 && AutoCarList.Count != 0)
@@ -64,7 +65,11 @@ public class SubRoadGetSection : MonoBehaviour
                 SubRoadCarDict.Add($"{AutoCarList[i + 1].name}_{AutoCarList[i].name}",0);
             }
         }
-        
+        */
+        for (int i = 0; i < AutoCarList.Count; i++)
+        {
+            SubRoadCarDict.Add(AutoCarList[i].name,0);
+        }
 
     }
 

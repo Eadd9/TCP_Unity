@@ -360,6 +360,7 @@
 "Assets/Script/scr_VehicleHandler.cs"
 "Assets/Script/TCPtest.cs"
 "Assets/Script_CarNum/CarDect.cs"
+"Assets/Script_CarNum/CarDectLight.cs"
 "Assets/Script_CarNum/CenterBox.cs"
 "Assets/Script_CarNum/RoadGetNum.cs"
 "Assets/Script_CarNum/SendToPython.cs"
