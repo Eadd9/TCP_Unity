@@ -665,7 +665,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 33655530}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0.1, z: 0}
+  m_LocalPosition: {x: 0, y: -1.56, z: 0}
   m_LocalScale: {x: 17, y: 1, z: 17}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -5506,6 +5506,7 @@ GameObject:
   m_Component:
   - component: {fileID: 334823668}
   - component: {fileID: 334823669}
+  - component: {fileID: 334823670}
   m_Layer: 0
   m_Name: E35
   m_TagString: Untagged
@@ -5545,7 +5546,22 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   RoadID: 
   CarNumonroad: 0
+  AllOrdi: []
   AllAutoCarList: []
+  AllOrdinary: []
+--- !u!65 &334823670
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 334823667}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Size: {x: 36.68, y: 11.39, z: 0.5}
+  m_Center: {x: 12.95, y: 0, z: 0}
 --- !u!1 &344566795
 GameObject:
   m_ObjectHideFlags: 0
@@ -11101,6 +11117,37 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 5
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!1 &849648557
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 849648558}
+  m_Layer: 0
+  m_Name: GameObject (1)
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &849648558
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 849648557}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 10, y: 0, z: 3800}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_RootOrder: 13
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &850786759
 GameObject:
   m_ObjectHideFlags: 0
@@ -15436,6 +15483,7 @@ GameObject:
   - component: {fileID: 1274701408}
   - component: {fileID: 1274701412}
   - component: {fileID: 1274701413}
+  - component: {fileID: 1274701414}
   m_Layer: 6
   m_Name: AutoCar
   m_TagString: autocar
@@ -15530,9 +15578,24 @@ MonoBehaviour:
   m_GameObject: {fileID: 1274701405}
   m_Enabled: 1
   m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ec679405c5b25cc43ba0935257ec894e, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  E35: {fileID: 334823667}
+  ordinaryCarList: []
+--- !u!114 &1274701414
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1274701405}
+  m_Enabled: 0
+  m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 9e4cbb2db5a426041afe4e8e6581ca14, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  E35: {fileID: 0}
   tmpnumleft: 0
   tmpnumright: 0
 --- !u!1 &1274706151
@@ -22745,7 +22808,9 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   RoadID: 
   CarNumonroad: 0
+  AllOrdi: []
   AllAutoCarList: []
+  AllOrdinary: []
 --- !u!1 &1840351815
 GameObject:
   m_ObjectHideFlags: 0

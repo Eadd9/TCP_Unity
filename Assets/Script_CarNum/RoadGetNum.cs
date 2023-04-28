@@ -30,7 +30,7 @@ public class RoadGetNum : MonoBehaviour
     void Update()
     {
         CarNumonroad = AllAutoCarList.Count;
-        Debug.Log($"{gameObject.name}:{CarNumonroad}");
+        AllOrdi.Clear();
         AllAutoCarList.Clear();
         AutoCarDict.Clear();
         AutoCarDict = SubRoadGetNum1.SubRoadCarDict.Concat(SubRoadGetNum2.SubRoadCarDict)
@@ -62,7 +62,6 @@ public class RoadGetNum : MonoBehaviour
                 }
             }
         }
-        
         CarNumonroad = AllAutoCarList.Count + AllOrdi.Count;
         //更新道路上的总车辆数
         /*
